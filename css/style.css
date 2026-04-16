@@ -1,63 +1,140 @@
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
+/* カラーパレットの定義 */
+:root {
+    --bg-color: #EDEDED;
+    --text-color: #000000;
+    --accent-color: #008CC8;
+    --box-bg: #FFFFFF;
+    --box-border: #CCCCCC; /* 灰色の枠線 */
 }
 
+/* ベーススタイル */
 body {
-  background-color: #EDEDED;
-  color: #000000;
-  font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    max-width: 800px; /* 読みやすさのための最大幅 */
+    margin-left: auto;
+    margin-right: auto;
 }
 
+h1, h2, h3 {
+    color: var(--text-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ボックススタイル (白背景＋灰色の枠) */
 .box {
-  background-color: #FFFFFF;
-  border: 1px solid #C0C0C0;
-  padding: 15px;
-  border-radius: 5px;
+    background-color: var(--box-bg);
+    border: 1px solid var(--box-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
-.tab {
-  display: inline-block;
-  margin-right: 5px;
-  padding: 10px;
-  border: 1px solid #C0C0C0;
-  border-radius: 5px;
-  background-color: #FFFFFF;
-  cursor: pointer;
+/* 目次 (TOC) */
+.toc {
+    list-style-type: disc;
+    padding-left: 20px;
 }
 
-.tab.active {
-  background-color: #008CC8;
-  color: #FFFFFF;
+.toc li {
+    margin-bottom: 5px;
 }
 
-.collapsible {
-  background-color: #FFFFFF;
-  color: #000000;
-  border: 1px solid #C0C0C0;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.collapsible.active {
-  background-color: #008CC8;
-  color: #FFFFFF;
-}
-
-.password-protected {
-  background-color: #F8D7DA;
-  color: #721C24;
-  border: 1px solid #F5C6CB;
-  padding: 10px;
-  border-radius: 5px;
-}/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
+/* 折り畳み (details / summary) */
+details {
+    border: 1px solid var(--box-border);
+    border-radius: 4px;
     padding: 10px;
-  }
-  .tab, .collapsible {
-    font-size: 14px;
-  }
+    margin-bottom: 10px;
+    background-color: var(--box-bg);
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--accent-color);
+    outline: none;
+}
+
+.details-content {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--box-border);
+}
+
+/* タブスタイル */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid var(--box-border);
+    margin-bottom: 15px;
+}
+
+.tab-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: var(--text-color);
+    transition: 0.3s;
+}
+
+.tab-button:hover {
+    background-color: var(--bg-color);
+}
+
+.tab-button.active {
+    border-bottom: 3px solid var(--accent-color);
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-bottom: -2px; /* 枠線を上書き */
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.4s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ボタン・その他 */
+.hidden {
+    display: none !important;
+}
+
+.action-btn {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.action-btn:hover {
+    opacity: 0.8;
 }
