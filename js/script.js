@@ -1,55 +1,29 @@
-// JavaScript functionality for tabs
+// タブ切り替え機能
 function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+    // すべてのタブコンテンツを非表示にする
+    const tabContents = document.getElementsByClassName("tab-content");
+    for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
     }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    // すべてのタブボタンから active クラスを削除する
+    const tabButtons = document.getElementsByClassName("tab-button");
+    for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
     }
 
-    // Show the current tab and add an "active" class to the link that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    // クリックされたタブを表示し、ボタンをアクティブにする
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
 }
 
-// JavaScript functionality for collapsible sections
-function toggleCollapse(element) {
-    var content = element.nextElementSibling;
-    if (content.style.display === "block") {
-        content.style.display = "none";
-    } else {
-        content.style.display = "block";
+// 簡易パスワード保護機能
+function checkPassword(targetId, correctPassword) {
+    const input = prompt("パスワードを入力してください (テスト用: 0000)");
+    
+    if (input === correctPassword) {
+        document.getElementById(targetId).classList.remove("hidden");
+    } else if (input !== null) {
+        alert("パスワードが違います。");
     }
 }
-
-// Password protection for specific pages
-function checkPassword() {
-    var password = prompt("Please enter the password:");
-    if (password !== "your_password") {
-        alert("Access denied.");
-        window.location.href = "index.html"; // Redirect to home page
-    }
-}
-
-// Table of contents generation
-function generateTOC() {
-    var toc = document.getElementById("toc");
-    var headings = document.querySelectorAll("h1, h2, h3");
-    headings.forEach(function (heading) {
-        var link = document.createElement("a");
-        link.href = '#' + heading.id;
-        link.textContent = heading.textContent;
-        toc.appendChild(link);
-    });
-}
-
-// Call the TOC generation function on page load
-window.onload = generateTOC;
