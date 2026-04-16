@@ -1,8 +1,4 @@
-theme: minima
-
-# Build settings
-# baseurl: "" # the subpath of your site, e.g. /~you/yourrepo
-# url: "" # the URL of your site, e.g. http://example.com
-# plugins:
-#   - jekyll-feed
-#   - jekyll-sitemap
+title: My Workspace
+description: メモやポートフォリオ、小説を管理するサイト
+theme: jekyll-theme-blank # デフォルトのテーマスタイルを無効化し、自作のCSSを活かす
+markdown: kramdown
